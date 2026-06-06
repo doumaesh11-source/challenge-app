@@ -56,9 +56,7 @@ function completeChallenge() {
   document.querySelector(".xp").textContent = `XP: ${xp}`;
   document.querySelector(".streak").textContent = `Streak: ${streak} 🔥`;
 
-  const category = document.getElementById("category").value;
-
-  const list = challenges[category];
+  const list = challenges.fitness;
 
   const randomChallenge =
     list[Math.floor(Math.random() * list.length)];
