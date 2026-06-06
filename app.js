@@ -1,6 +1,4 @@
-console.log("JS loaded successfully");
 const challenges = {
-
   fitness: [
     "Do 10 push-ups 💪",
     "Do 20 squats 🦵",
@@ -48,20 +46,61 @@ let streak = parseInt(localStorage.getItem("streak")) || 0;
 document.querySelector(".xp").textContent = `XP: ${xp}`;
 document.querySelector(".streak").textContent = `Streak: ${streak} 🔥`;
 
-function completeChallenge() {
-  xp += 10;
-  streak += 1;
+function generateChallenge() {
+  const category = document.getElementById("category").value;
 
-  localStorage.setItem("xp", xp);
-  localStorage.setItem("streak", streak);
+  let completed =
+    JSON.parse(localStorage.getItem(category)) || [];
 
-  document.querySelector(".xp").textContent = `XP: ${xp}`;
-  document.querySelector(".streak").textContent = `Streak: ${streak} 🔥`;
+  let available = challenges[category].filter(
+    challenge => !completed.includes(challenge)
+  );
 
-  const list = challenges.fitness;
+  if (available.length === 0) {
+    document.getElementById("challenge").textContent =
+      "🎉 Congratulations! You completed all challenges in this category.";
+
+    return;
+  }
 
   const randomChallenge =
-    list[Math.floor(Math.random() * list.length)];
+    available[Math.floor(Math.random() * available.length)];
 
-  document.getElementById("challenge").textContent = randomChallenge;
+  document.getElementById("challenge").textContent =
+    randomChallenge;
 }
+
+function completeChallenge() {
+  const category = document.getElementById("category").value;
+
+  const currentChallenge =
+    document.getElementById("challenge").textContent;
+
+  let completed =
+    JSON.parse(localStorage.getItem(category)) || [];
+
+  if (!completed.includes(currentChallenge)) {
+    completed.push(currentChallenge);
+
+    localStorage.setItem(
+      category,
+      JSON.stringify(completed)
+    );
+
+    xp += 10;
+    streak += 1;
+
+    localStorage.setItem("xp", xp);
+    localStorage.setItem("streak", streak);
+
+    document.querySelector(".xp").textContent =
+      `XP: ${xp}`;
+
+    document.querySelector(".streak").textContent =
+      `Streak: ${streak} 🔥`;
+  }
+
+  generateChallenge();
+}
+
+generateChallenge();
