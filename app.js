@@ -1,4 +1,6 @@
+console.log("JS loaded successfully");
 const challenges = {
+
   fitness: [
     "Do 10 push-ups 💪",
     "Do 20 squats 🦵",
