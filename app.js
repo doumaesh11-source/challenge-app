@@ -1,78 +1,29 @@
-let xp = localStorage.getItem("xp") ? Number(localStorage.getItem("xp")) : 0;
-let level = localStorage.getItem("level") ? Number(localStorage.getItem("level")) : 1;
-let streak = localStorage.getItem("streak") ? Number(localStorage.getItem("streak")) : 0;
-
 const challenges = [
-  "Read 5 pages 📖",
   "Do 10 push-ups 💪",
   "Learn 5 English words 📚",
-  "Clean your room 🧹",
-  "Walk for 10 minutes 🚶"
+  "Drink 2 liters of water 💧",
+  "Read 10 pages of a book 📖",
+  "Walk for 15 minutes 🚶"
 ];
 
-window.onload = function () {
-  let todayChallenge = challenges[Math.floor(Math.random() * challenges.length)];
-  document.getElementById("challenge").innerText = todayChallenge;
-  updateUI();
-};
+let xp = localStorage.getItem("xp") || 0;
+let streak = localStorage.getItem("streak") || 0;
+
+document.querySelector(".xp").textContent = `XP: ${xp}`;
+document.querySelector(".streak").textContent = `Streak: ${streak} 🔥`;
 
 function completeChallenge() {
-  xp += 20;
-  streak += 1;
+  xp = Number(xp) + 10;
+  streak = Number(streak) + 1;
 
-  if (xp >= level * 100) {
-    level += 1;
-  }
-
-  saveData();
-  updateUI();
-}
-
-function updateUI() {
-  document.getElementById("xp").innerText = xp;
-  document.getElementById("level").innerText = level;
-  document.getElementById("streak").innerText = streak;
-}
-
-function saveData() {
   localStorage.setItem("xp", xp);
-  localStorage.setItem("level", level);
   localStorage.setItem("streak", streak);
-  function newChallenge() {
-  let todayChallenge = challenges[Math.floor(Math.random() * challenges.length)];
-  document.getElementById("challenge").innerText = todayChallenge;
-}
-function getTodayDate() {
-  return new Date().toDateString();
-}
 
-window.onload = function () {
+  document.querySelector(".xp").textContent = `XP: ${xp}`;
+  document.querySelector(".streak").textContent = `Streak: ${streak} 🔥`;
 
-  let savedDate = localStorage.getItem("date");
-  let today = getTodayDate();
+  const randomChallenge =
+    challenges[Math.floor(Math.random() * challenges.length)];
 
-  if (savedDate !== today) {
-    localStorage.setItem("date", today);
-    newChallenge();
-    function newChallenge() {
-  let todayChallenge = challenges[Math.floor(Math.random() * challenges.length)];
-  document.getElementById("challenge").innerText = todayChallenge;
-
-  localStorage.setItem("challenge", todayChallenge);
-}
-  } else {
-    document.getElementById("challenge").innerText =
-      localStorage.getItem("challenge") || "No challenge";
-  }
-
-  updateUI();
-};
-let done = localStorage.getItem("done");
-
-if (done === getTodayDate()) {
-  alert("You already completed today's challenge 🔥");
-  return;
-}
-
-localStorage.setItem("done", getTodayDate());
+  document.getElementById("challenge").textContent = randomChallenge;
 }
