@@ -1,73 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
-  <meta charset="UTF-8">
-  <title>Life Challenge</title>
-
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVX6Z2C8JH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-FVX6Z2C8JH');
-  </script>
-</head>
-
-
   <meta charset="UTF-8">
   <title>Life Challenge</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="container">
 
   <h1>🔥 Life Challenge</h1>
 
-  <div class="stats">
-    <div>
-      <p>Level</p>
-      <span id="level">1</span>
-    </div>
-
-    <div>
-      <p>XP</p>
-      <span id="xp">0</span>
-    </div>
-
-    <div>
-      <p>Streak</p>
-      <span id="streak">0</span>
-    </div>
+  <div>
+    <p>Level: <span id="level">1</span></p>
+    <p class="xp">XP: 0</p>
+    <p class="streak">Streak: 0 🔥</p>
   </div>
 
-  <div class="card">
-<h3>Choose Category</h3>
+  <h3>Choose Category</h3>
 
-<select id="category">
-  <option value="fitness">💪 Fitness</option>
-  <option value="learning">📚 Learning</option>
-  <option value="money">💰 Money</option>
-  <option value="productivity">🧠 Productivity</option>
-  <option value="social">🌍 Social</option>
-</select>
+  <select id="category">
+    <option value="fitness">💪 Fitness</option>
+    <option value="learning">📚 Learning</option>
+    <option value="money">💰 Money</option>
+    <option value="productivity">🧠 Productivity</option>
+    <option value="social">🌍 Social</option>
+  </select>
 
-<br><br>
-
+  <div>
     <h2>Today's Challenge</h2>
     <p id="challenge">Loading...</p>
 
-    <button class="complete" onclick="completeChallenge()">
+    <button onclick="completeChallenge()">
       I Completed It ✅
-    </button>
-
-    <button class="next" onclick="newChallenge()">
-      Next Challenge 🔄
     </button>
   </div>
 
-</div>
+  <!-- مهم لازم يكون في الأخير -->
+  <script src="app.js"></script>
+
+</body>
+</html>
